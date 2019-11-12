@@ -7,13 +7,13 @@ exports.sourceNodes = async (
 ) => {
   const { createNode, setPluginStatus } = actions;
 
+  const pluginStatus = store.getState().status.plugins[
+    "gatsby-source-wallabag"
+  ];
+
   let lastFetched = null;
-  if (
-    store.getState().status.plugins &&
-    store.getState().status.plugins["gatsby-source-wallabag"]
-  ) {
-    lastFetched = store.getState().status.plugins["gatsby-source-wallabag"]
-      .lastFetched;
+  if (pluginStatus) {
+    lastFetched = pluginStatus.lastFetched;
   }
 
   const articleToNode = article => {
