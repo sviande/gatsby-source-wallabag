@@ -70,10 +70,18 @@ exports.sourceNodes = async (
   let entries = await pageResponse.json();
 
   do {
-    entries._embedded.items.forEach(article =>
-      createNode(articleToNode(article))
-    );
+    entries._embedded.items.forEach(article => {
+      article.created_at = new Date(article.created_at);
+      article.updated_at = new Date(article.updated_at);
+      article.archived_at = article.archived_at
+        ? new Date(article.archived_at)
+        : null;
+      createNode(articleToNode(article));
+    });
 
+    if (!entries._links.next) {
+      return;
+    }
     const response = await fetch(entries._links.next.href, {
       method: "GET",
       headers: {
