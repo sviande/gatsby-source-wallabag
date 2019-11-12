@@ -49,7 +49,7 @@ exports.sourceNodes = async (
 
   const pageQuery = {
     sort: "updated",
-    perPage: 50
+    perPage: 500
   };
 
   if (lastFetched) {
