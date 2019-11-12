@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "main": "index.js",
   "license": "MIT",
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "gatsby-source-wallabag",
+    "wallabag"
+  ],
   "dependencies": {
     "node-fetch": "^2.6.0",
     "query-string": "^6.6.0"
