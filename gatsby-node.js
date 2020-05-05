@@ -67,6 +67,11 @@ exports.sourceNodes = async (
       }
     }
   );
+
+  if (!pageResponse.ok) {
+    throw new Error(res.statusText);
+  }
+
   let entries = await pageResponse.json();
 
   do {
