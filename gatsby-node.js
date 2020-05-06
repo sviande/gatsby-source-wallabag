@@ -2,10 +2,16 @@ const fetch = require("node-fetch");
 const queryString = require("query-string");
 
 exports.sourceNodes = async (
-  { actions, createNodeId, createContentDigest, store },
+  { actions, createNodeId, createContentDigest, store, getNodes },
   configOptions
 ) => {
-  const { createNode, setPluginStatus } = actions;
+  const { createNode, setPluginStatus, touchNode } = actions;
+
+  const existingNodes = getNodes().filter(
+    n => n.internal.owner === `gatsby-source-wallabag`
+  )
+  existingNodes.forEach(n => touchNode({ nodeId: n.id }))
+
 
   const pluginStatus = store.getState().status.plugins[
     "gatsby-source-wallabag"
@@ -97,4 +103,5 @@ exports.sourceNodes = async (
   } while (entries._links.next);
 
   setPluginStatus({ lastFetched: lastFetched.getTime() });
+  return;
 };
