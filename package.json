@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-wallabag",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "index.js",
   "license": "MIT",
   "keywords": [
@@ -9,6 +9,9 @@
     "gatsby-source-wallabag",
     "wallabag"
   ],
+  "peeDependencies": {
+    "gatsby": "^3.0.0"
+  },
   "dependencies": {
     "node-fetch": "^2.6.1",
     "query-string": "^6.6.0"

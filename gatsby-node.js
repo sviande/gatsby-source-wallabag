@@ -10,7 +10,7 @@ exports.sourceNodes = async (
   const existingNodes = getNodes().filter(
     n => n.internal.owner === `gatsby-source-wallabag`
   )
-  existingNodes.forEach(n => touchNode({ nodeId: n.id }))
+  existingNodes.forEach(n => touchNode(n))
 
 
   const pluginStatus = store.getState().status.plugins[
